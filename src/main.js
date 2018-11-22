@@ -51,8 +51,10 @@ var app2 = new Vue({
     ],
     drinks: {
       'water': 3,
-      'code': 4,
-      'beer': 0
+      'cola': 4,
+      'the': 2,
+      'milk': 0,
+      'beer': -5
     }
   }
 })
@@ -98,3 +100,22 @@ var app3 = new Vue({
     }
   }
 })
+
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    people: [
+      'Alberto',
+      'Marco',
+      'Luca',
+      'Andrea'
+    ]
+  },
+  methods: {
+    shuffle: function() {
+      this.people = this.people.sort(function() {
+        return .5 - Math.random();
+      });
+    }
+  }
+});

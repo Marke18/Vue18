@@ -23,7 +23,7 @@
     <div class="row margin">
       <div class="col-lg">
         <div id="app-1">
-        <!-- model: gestisce l'input, keyup: quando preme invio rovescia -->
+        <!-- model: gestisce l'input -->
         <!-- v-on: si può sostituire con @ -->
         <input v-model="message" style="margin-bottom:1vh;"></input>
           <span> ==> {{messageR}}</span>
@@ -47,7 +47,7 @@
           <div v-if="showBooks">
             <h4>Bevande</h4>
             <ul>
-              <li v-for="(quantity, drink) in drinks">{{ drink }} => {{ quantity }}</li> <!-- v-for="n in 20" -->
+              <li v-for="(quantity, drink) in drinks" v-if="quantity >= 0">{{ drink }} => {{ quantity }}</li> <!-- v-for="n in 20" -->
             </ul>
           </div>
         </div>
@@ -58,7 +58,7 @@
       <div class="col-xs-6">
         <div id="app-3">
           <input type="text" v-model="fullname"><br>
-          <span>{{ firstname }} {{ lastname }}</span><br>
+          <span v-bind:title="message">{{ firstname }} {{ lastname }}</span><br>
           <button v-bind:disabled="button1Dis" v-on:click="button = 1"> <!-- v-bind:disabled=true -->
             3 Nome
           </button>
@@ -74,6 +74,11 @@
     <div class="row margin">
       <div class="col-4-lg">
         <div id="app-4">
+          <div v-for="person in people" v-bind:key="person">
+            <input type="text">
+            {{ person }}
+          </div>
+          <button @click="shuffle">mischia</button>
 
         </div>
       </div>
