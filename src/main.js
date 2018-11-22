@@ -25,7 +25,10 @@ var app1 = new Vue({
   data: {
     message: 'Cambia messaggio',
     pal: 'Stringa palindroma',
-    palN: 'Stringa non palindroma'
+    palN: 'Stringa non palindroma',
+    myCustomStyles: {
+      color: 'blue'
+    }
   },
 /*  methods: {
     reverseMessage: function () {

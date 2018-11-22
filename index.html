@@ -22,10 +22,10 @@
 
     <div class="row margin">
       <div class="col-lg">
-        <div id="app-1">
-        <!-- model: gestisce l'input -->
-        <!-- v-on: si può sostituire con @ -->
-        <input v-model="message" style="margin-bottom:1vh;"></input>
+        <div id="app-1" :style="myCustomStyles"> <!-- <div :style="[myCustomStyles, { width: '100px' }]"><div> -->
+          <!-- model: gestisce l'input -->
+          <!-- v-on: si può sostituire con @ -->
+          <input v-model="message" style="margin-bottom:1vh;"></input>
           <span> ==> {{messageR}}</span>
           <p v-if="message == messageR">{{pal}}</p>
           <p v-else>{{palN}}</p>
