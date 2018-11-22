@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <title>Vue18</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+  <div id="titolo">
+    <h1>Vue18</h1>
+  </div>
+
+  <div class="container">
+
+    <div class="row margin">
+      <div class="col-lg">
+        <div id="app-1">
+        <!-- model: gestisce l'input, keyup: quando preme invio rovescia -->
+        <!-- v-on: si può sostituire con @ -->
+        <input v-model="message" style="margin-bottom:1vh;"></input>
+          <span> ==> {{messageR}}</span>
+          <p v-if="message == messageR">{{pal}}</p>
+          <p v-else>{{palN}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="app-2">
+      <div class="row margin">
+        <div class="col-lg-6 text-center">
+          <div v-if="showMovies">
+            <h4>My favourite movies</h4>
+            <ul>
+              <li v-for="movie in movies">{{ movie }}</li> <!-- v-for="n in 20" -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div v-if="showBooks">
+            <h4>Bevande</h4>
+            <ul>
+              <li v-for="(quantity, drink) in drinks">{{ drink }} => {{ quantity }}</li> <!-- v-for="n in 20" -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row margin">
+      <div class="col-xs-6">
+        <div id="app-3">
+          <input type="text" v-model="fullname"><br>
+          <span>{{ firstname }} {{ lastname }}</span><br>
+          <button v-bind:disabled="button1Dis" v-on:click="button = 1"> <!-- v-bind:disabled=true -->
+            3 Nome
+          </button>
+          <button v-bind:disabled="button2Dis" v-on:click="button = 2"> <!-- v-bind:disabled=false -->
+            3 Cognome
+          </button><br>
+          <p v-if="button == 1">Prime 3 lettere del nome: {{firstname|uppercase|limit(3)}}</p>
+          <p v-if="button == 2">Prime 3 lettere del cognome: {{lastname|uppercase|limit(3)}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row margin">
+      <div class="col-4-lg">
+        <div id="app-4">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
