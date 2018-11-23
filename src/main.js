@@ -22,10 +22,12 @@ Vue.component('people-list', {
   template: '#people-list',
   props: ['people']
 })
+
 Vue.component('person', {
   template: '#person',
   props: ['person']
 })
+
 Vue.component('child-component', {
   props: ['firstname2', 'lastname2'],
   methods: {
@@ -33,29 +35,6 @@ Vue.component('child-component', {
       this.$emit('update:firstname2', 'luigi')
     }
   }
-})
-Vue.component('incrementer', {
-  template: '<button @click="increment">+</button>',
-  methods: {
-    increment: function () {
-      EventBus.$emit('increment')
-    }
-  }
-})
-Vue.component('decrementer', {
-  template: '<button @click="decrement">-</button>',
-  methods: {
-    decrement: function () {
-      EventBus.$emit('decrement')
-    }
-  }
-})
-Vue.component('groc', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
-  props: ['grocery'],
-  template: '<li>{{ grocery.text }}</li>'
 })
 /*
 Altro metodo per componenete
@@ -80,7 +59,33 @@ new Vue({
   }
 });
 */
-// window.test = app1; --> per visualizzare nel modo in cui è detto sul sito
+
+Vue.component('incrementer', {
+  template: '<button @click="increment">+</button>',
+  methods: {
+    increment: function () {
+      EventBus.$emit('increment')
+    }
+  }
+})
+
+Vue.component('decrementer', {
+  template: '<button @click="decrement">-</button>',
+  methods: {
+    decrement: function () {
+      EventBus.$emit('decrement')
+    }
+  }
+})
+
+Vue.component('groc', {
+  // The todo-item component now accepts a
+  // "prop", which is like a custom attribute.
+  // This prop is called todo.
+  props: ['grocery'],
+  template: '<li>{{ grocery.text }}</li>'
+})
+// window.test = app1; --> per visualizzare le modifiche in console
 // var app1: va bene, ma non permette le verifiche su console
 // eslint-disable-next-line
 var app1 = new Vue({
@@ -95,7 +100,8 @@ var app1 = new Vue({
     groceryList: [
       { id: 0, text: 'Vegetables' },
       { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 2, text: 'meat' },
+      { id: 3, text: 'Whatever else humans are supposed to eat' }
     ]
   },
   computed: {
