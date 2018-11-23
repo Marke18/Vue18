@@ -86,7 +86,14 @@ var app3 = new Vue({
     button1Dis: false,
     button2Dis: false,
     firstname: 'Tuc',
-    lastname: 'Tuc'
+    lastname: 'Tuc',
+    people: [
+      { name: 'Alberto', surname: 'Bianchi' },
+      { name: 'Marco', surname: 'Rossi' },
+      { name: 'Luca', surname: 'Verdi' },
+    ],
+    name: '',
+    surname: ''
   },
   watch: {
     firstname: function (value) {
@@ -119,6 +126,16 @@ var app3 = new Vue({
           this.lastname = ''
         }
       }
+    }
+  },
+  methods: {
+    addPerson: function() {
+      this.people.push({
+        name: this.name,
+        surname: this.surname
+      });
+      this.name = ''
+      this.surname = ''
     }
   }
 })
@@ -172,29 +189,6 @@ var app4 = new Vue({
           }
         }, 70)
       }
-    }
-  }
-})
-// eslint-disable-next-line
-var app5 = new Vue({
-  el: '#app-5',
-  data: {
-    people: [
-      { name: 'Alberto', surname: 'Bianchi' },
-      { name: 'Marco', surname: 'Rossi' },
-      { name: 'Luca', surname: 'Verdi' },
-    ],
-    name: '',
-    surname: ''
-  },
-  methods: {
-    addPerson: function() {
-      this.people.push({
-        name: this.name,
-        surname: this.surname
-      });
-      this.name = ''
-      this.surname = ''
     }
   }
 })
