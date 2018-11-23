@@ -258,7 +258,7 @@ var app4 = new Vue({
       let chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 '
       let txt = this.messageL.split('')
       let coord = this.coord.split('')
-      // console.log(app4.coord_altro, 'pippo')
+      // console.log(app4.coord, 'pippo')
       for (let i = 0; i <= this.messageL.length; i++) {
         var id = setInterval(() => {
           if (txt[i] !== coord[i]) {
