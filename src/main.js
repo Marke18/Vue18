@@ -20,6 +20,7 @@ new Vue({
 
 // window.test = app1; --> per visualizzare nel modo in cui è detto sul sito
 // var app1: va bene, ma non permette le verifiche su console
+// eslint-disable-next-line
 var app1 = new Vue({
   el: ' #app-1',
   data: {
@@ -30,18 +31,13 @@ var app1 = new Vue({
       color: 'blue'
     }
   },
-/*  methods: {
-    reverseMessage: function () {
-      this.messageR = this.message.split('').reverse().join('')
-    }
-  }, esempio di un metodo */
   computed: {
     messageR: function () {
       return this.message.split('').reverse().join('')
     }
   }
 })
-
+// eslint-disable-next-line
 var app2 = new Vue({
   el: '#app-2',
   data: {
@@ -61,7 +57,7 @@ var app2 = new Vue({
     }
   }
 })
-
+// eslint-disable-next-line
 var app3 = new Vue({
   el: '#app-3',
   data: {
@@ -103,7 +99,7 @@ var app3 = new Vue({
     }
   }
 })
-
+// eslint-disable-next-line
 var app4 = new Vue({
   el: '#app-4',
   data: {
@@ -115,10 +111,63 @@ var app4 = new Vue({
     ]
   },
   methods: {
-    shuffle: function() {
-      this.people = this.people.sort(function() {
-        return .5 - Math.random();
-      });
+    shuffle: function () {
+      this.people = this.people.sort(function () {
+        return 0.5 - Math.random()
+      })
     }
   }
-});
+})
+// eslint-disable-next-line
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    coord: '45.64153 10.49866',
+    message: 'Scegli il Messaggio'
+  },
+  computed: {
+    coordinate: {
+      get: function () {
+        var txt = ''
+        var l1 = this.coord.length
+        var l2 = this.message.length
+        if (l1 < l2) {
+          for (let i = l1; i < l2; i++) {
+            txt += '0'
+          }
+        }
+        return this.coord + txt
+      }
+    },
+    messageL: {
+      get: function () {
+        var txt = ''
+        var l1 = this.coord.length
+        var l2 = this.message.length
+        if (l1 > l2) {
+          for (let i = l2; i < l1; i++) {
+            txt += ' '
+          }
+        }
+        return this.message + txt
+      }
+    }
+  },
+  methods: {
+    converti: function () {
+      let chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 '
+      let txt = this.messageL.split('')
+      let coord = this.coord.split('')
+      for (let i = 0; i <= this.messageL.length; i++) {
+        var id = setInterval(() => {
+          if (txt[i] !== coord[i]) {
+            coord[i] = chars.charAt(Math.floor(Math.random() * chars.length))
+            this.coord = coord.join('')
+          } else {
+            clearInterval(id)
+          }
+        }, 70)
+      }
+    }
+  }
+})

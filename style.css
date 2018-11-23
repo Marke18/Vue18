@@ -24,3 +24,15 @@ body {
 .margin {
   margin: 2vh 0;
 }
+
+#cambiaMess {
+  background-color: black;
+  color: green;
+  font-size: 30px;
+  padding: 3vh;
+}
+
+#cambiaMess div {
+  margin: 0px;
+  padding: 0px;
+}
