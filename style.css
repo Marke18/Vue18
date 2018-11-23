@@ -30,6 +30,7 @@ body {
   color: green;
   font-size: 30px;
   padding: 3vh;
+  width: 100%;
 }
 
 #cambiaMess div {

@@ -41,12 +41,13 @@ var app1 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    showMovies: true,
-    showBooks: true,
-    movies: [
-      'Back to the Future',
-      'Matrix',
-      'Indipendence Day'
+    showDrinks: true,
+    people: [
+      'Alberto',
+      'Marco',
+      'Luca',
+      'Andrea',
+      'Gianfrancioschio'
     ],
     drinks: {
       'water': 3,
@@ -54,6 +55,13 @@ var app2 = new Vue({
       'the': 2,
       'milk': 0,
       'beer': -5
+    }
+  },
+  methods: {
+    shuffle: function () {
+      this.people = this.people.sort(function () {
+        return 0.5 - Math.random()
+      })
     }
   }
 })
@@ -102,25 +110,6 @@ var app3 = new Vue({
 // eslint-disable-next-line
 var app4 = new Vue({
   el: '#app-4',
-  data: {
-    people: [
-      'Alberto',
-      'Marco',
-      'Luca',
-      'Andrea'
-    ]
-  },
-  methods: {
-    shuffle: function () {
-      this.people = this.people.sort(function () {
-        return 0.5 - Math.random()
-      })
-    }
-  }
-})
-// eslint-disable-next-line
-var app5 = new Vue({
-  el: '#app-5',
   data: {
     coord: '45.64153 10.49866',
     message: 'Scegli il Messaggio'
