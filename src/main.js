@@ -55,7 +55,10 @@ var app2 = new Vue({
       'the': 2,
       'milk': 0,
       'beer': -5
-    }
+    },
+    mese: 'marzo',
+    tv: 'si',
+    sauna: 'no'
   },
   methods: {
     shuffle: function () {
@@ -103,6 +106,9 @@ var app3 = new Vue({
         var parts = value.split(' ')
         this.firstname = parts[0]
         this.lastname = parts[1]
+        if (this.lastname === undefined) {
+          this.lastname = ''
+        }
       }
     }
   }

@@ -33,10 +33,9 @@
       </div>
     </div>
 
-
     <div id="app-2">
       <div class="row margin">
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-3 text-center">
           <div v-if="showDrinks">
             <h4>Bevande</h4>
             <ul>
@@ -44,12 +43,22 @@
             </ul>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4 offset-lg ">
           <div v-for="person in people" v-bind:key="person">
             <input type="text">
             {{ person }}
           </div>
           <button @click="shuffle">mischia</button>
+        </div>
+        <div class="col-lg-3">
+          <input type="radio" v-model="mese" v-bind:value="'marzo'"> Marzo
+          <input type="radio" v-model="mese" v-bind:value="'aprile'"> Aprile
+          <input type="radio" v-model="mese" v-bind:value="'maggio'"> Maggio
+          <br/>
+          <input type="checkbox" v-model="tv" v-bind:true-value="'si'" v-bind:false-value="'no'">tv
+          <input type="checkbox" v-model="sauna" v-bind:true-value="'si'" v-bind:false-value="'no'">sauna
+          <br/><br/>
+          <span>{{ mese }} - {{ tv }} - {{ sauna }}</span>
         </div>
       </div>
     </div>
@@ -57,7 +66,7 @@
     <div class="row margin">
       <div class="col-lg-8">
         <div id="app-3">
-          <input type="text" v-model="fullname"><br>
+          <input type="text" v-model.trim="fullname"><br>
           <span v-bind:title="message">{{ firstname }} {{ lastname }}</span><br>
           <button v-bind:disabled="button1Dis" v-on:click="button = 1"> <!-- v-bind:disabled=true -->
             3 Nome
@@ -74,7 +83,7 @@
     <div class="row margin">
       <div class="col-lg">
         <div id="app-4">
-          <input v-model="message">
+          <input v-model.trim="message">
           <span> ==> {{message}}</span>
           <button v-on:click="converti">Converti</button>
           <div id="cambiaMess">
