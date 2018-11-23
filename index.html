@@ -20,15 +20,24 @@
 
   <div class="container">
 
-    <div class="row margin">
-      <div class="col-lg">
-        <div id="app-1" :style="myCustomStyles"> <!-- :style="[myCustomStyles, { width: '100px' }]" -->
+    <div id="app-1" :style="myCustomStyles"> <!-- :style="[myCustomStyles, { width: '100px' }]" -->
+      <div class="row margin">
+        <div class="col-lg-8">
           <!-- model: gestisce l'input -->
           <!-- v-on: si può sostituire con @ -->
           <input v-model="message" style="margin-bottom:1vh;"></input>
           <span> ==> {{messageR}}</span>
           <p v-if="message == messageR">{{pal}}</p>
           <p v-else>{{palN}}</p>
+        </div>
+        <div class="col-lg-3 offset-lg-1">
+          <ol>
+            <groc
+              v-for="item in groceryList"
+              v-bind:grocery="item"
+              v-bind:key="item.id">
+            </groc>
+          </ol>
         </div>
       </div>
     </div>
@@ -90,8 +99,13 @@
         <div class="col-lg-2">
           <b>{{ firstname2 }} {{ lastname2 }}</b>
           <child-component inline-template :firstname2.sync="firstname2" :lastname2="lastname2">
-          <button @click="updateFirstname()">Update from child</button>
+            <button @click="updateFirstname()">Update from child</button>
           </child-component>
+          <decrementer></decrementer>
+          <decrementer></decrementer>
+          <b>{{ counter }} </b>
+          <incrementer></incrementer>
+          <incrementer></incrementer>
         </div>
       </div>
     </div>

@@ -29,10 +29,33 @@ Vue.component('person', {
 Vue.component('child-component', {
   props: ['firstname2', 'lastname2'],
   methods: {
-    updateFirstname: function() {
-      this.$emit('update:firstname2', 'luigi');
+    updateFirstname: function () {
+      this.$emit('update:firstname2', 'luigi')
     }
   }
+})
+Vue.component('incrementer', {
+  template: '<button @click="increment">+</button>',
+  methods: {
+    increment: function () {
+      EventBus.$emit('increment')
+    }
+  }
+})
+Vue.component('decrementer', {
+  template: '<button @click="decrement">-</button>',
+  methods: {
+    decrement: function () {
+      EventBus.$emit('decrement')
+    }
+  }
+})
+Vue.component('groc', {
+  // The todo-item component now accepts a
+  // "prop", which is like a custom attribute.
+  // This prop is called todo.
+  props: ['grocery'],
+  template: '<li>{{ grocery.text }}</li>'
 })
 /*
 Altro metodo per componenete
@@ -68,7 +91,12 @@ var app1 = new Vue({
     palN: 'Stringa non palindroma',
     myCustomStyles: {
       color: 'blue'
-    }
+    },
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
   },
   computed: {
     messageR: function () {
@@ -107,6 +135,7 @@ var app2 = new Vue({
     }
   }
 })
+var EventBus = new Vue()
 // eslint-disable-next-line
 var app3 = new Vue({
   el: '#app-3',
@@ -120,12 +149,13 @@ var app3 = new Vue({
     people: [
       { name: 'Alberto', surname: 'Bianchi' },
       { name: 'Marco', surname: 'Rossi' },
-      { name: 'Luca', surname: 'Verdi' },
+      { name: 'Luca', surname: 'Verdi' }
     ],
     name: '',
     surname: '',
     firstname2: 'alberto',
-    lastname2: 'bottarini'
+    lastname2: 'bottarini',
+    counter: 0
   },
   watch: {
     firstname: function (value) {
@@ -161,14 +191,24 @@ var app3 = new Vue({
     }
   },
   methods: {
-    addPerson: function() {
+    addPerson: function () {
       this.people.push({
         name: this.name,
         surname: this.surname
-      });
+      })
       this.name = ''
       this.surname = ''
+    },
+    increment: function () {
+      this.counter++
+    },
+    decrement: function () {
+      this.counter--
     }
+  },
+  created: function () {
+    EventBus.$on('increment', this.increment.bind(this))
+    EventBus.$on('decrement', this.decrement.bind(this))
   }
 })
 // eslint-disable-next-line
@@ -219,7 +259,7 @@ var app4 = new Vue({
           } else {
             clearInterval(id)
           }
-        }, 70)
+        }, 40)
       }
     }
   }
