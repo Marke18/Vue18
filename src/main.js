@@ -26,7 +26,37 @@ Vue.component('person', {
   template: '#person',
   props: ['person']
 })
-
+Vue.component('child-component', {
+  props: ['firstname2', 'lastname2'],
+  methods: {
+    updateFirstname: function() {
+      this.$emit('update:firstname2', 'luigi');
+    }
+  }
+})
+/*
+Altro metodo per componenete
+Vue.component('child-component', {
+  props: ['firstname2', 'lastname2'],
+  methods: {
+    updateFirstname: function() {
+      this.$emit('update-firstname2', 'luigi');
+    }
+  }
+});
+new Vue({
+  el: '#vue-app',
+  data: {
+    firstname2: 'alberto',
+    lastname2: 'bottarini'
+  },
+  methods: {
+    onUpdateFirstname: function(newFirstname) {
+      this.firstname2 = newFirstname;
+    }
+  }
+});
+*/
 // window.test = app1; --> per visualizzare nel modo in cui è detto sul sito
 // var app1: va bene, ma non permette le verifiche su console
 // eslint-disable-next-line
@@ -93,7 +123,9 @@ var app3 = new Vue({
       { name: 'Luca', surname: 'Verdi' },
     ],
     name: '',
-    surname: ''
+    surname: '',
+    firstname2: 'alberto',
+    lastname2: 'bottarini'
   },
   watch: {
     firstname: function (value) {

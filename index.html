@@ -84,20 +84,17 @@
           <input v-model="surname" placeholder="surname"><br/>
           <button @click.prevent="addPerson">Add person</button>
         </div>
-        <div class="col-lg-4 offset-lg-2">
+        <div class="col-lg-2 offset-lg-2">
           <people-list :people="people"></people-list>
         </div>
+        <div class="col-lg-2">
+          <b>{{ firstname2 }} {{ lastname2 }}</b>
+          <child-component inline-template :firstname2.sync="firstname2" :lastname2="lastname2">
+          <button @click="updateFirstname()">Update from child</button>
+          </child-component>
         </div>
       </div>
     </div>
-    <template id="people-list">
-      <div>
-        <person v-for="person in people" :person="person"></person>
-      </div>
-    </template>
-    <template id="person">
-      <div><i>{{ person.name }}</i> <b>{{ person.surname }}</b></div>
-    </template>
 
     <div class="row margin">
       <div class="col-lg">
@@ -114,5 +111,13 @@
 
   </div>
 
+  <template id="people-list">
+    <div>
+      <person v-for="person in people" :person="person"></person>
+    </div>
+  </template>
+  <template id="person">
+    <div><i>{{ person.name }}</i> <b>{{ person.surname }}</b></div>
+  </template>
 </body>
 </html>
