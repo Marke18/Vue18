@@ -63,8 +63,10 @@
       </div>
     </div>
 
+
+
     <div class="row margin">
-      <div class="col-lg-8">
+      <div class="col-lg-4">
         <div id="app-3">
           <input type="text" v-model.trim="fullname"><br>
           <span v-bind:title="message">{{ firstname }} {{ lastname }}</span><br>
@@ -76,6 +78,24 @@
           </button><br>
           <p v-if="button == 1">Prime 3 lettere del nome: {{firstname|uppercase|limit(3)}}</p>
           <p v-if="button == 2">Prime 3 lettere del cognome: {{lastname|uppercase|limit(3)}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-2">
+        <div id="app-5">
+          <people-list :people="people"></people-list>
+          <div>
+            <input v-model="name" placeholder="name"><br/>
+            <input v-model="surname" placeholder="surname"><br/>
+            <button @click.prevent="addPerson">Add person</button>
+          </div>
+          <template id="people-list">
+            <div>
+              <person v-for="person in people" :person="person"></person>
+            </div>
+          </template>
+          <template id="person">
+            <div><i>{{ person.name }}</i> <b>{{ person.surname }}</b></div>
+          </template>
         </div>
       </div>
     </div>

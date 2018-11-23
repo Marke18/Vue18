@@ -18,6 +18,15 @@ new Vue({
 })
 */
 
+Vue.component('people-list', {
+  template: '#people-list',
+  props: ['people']
+})
+Vue.component('person', {
+  template: '#person',
+  props: ['person']
+})
+
 // window.test = app1; --> per visualizzare nel modo in cui è detto sul sito
 // var app1: va bene, ma non permette le verifiche su console
 // eslint-disable-next-line
@@ -163,6 +172,29 @@ var app4 = new Vue({
           }
         }, 70)
       }
+    }
+  }
+})
+// eslint-disable-next-line
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    people: [
+      { name: 'Alberto', surname: 'Bianchi' },
+      { name: 'Marco', surname: 'Rossi' },
+      { name: 'Luca', surname: 'Verdi' },
+    ],
+    name: '',
+    surname: ''
+  },
+  methods: {
+    addPerson: function() {
+      this.people.push({
+        name: this.name,
+        surname: this.surname
+      });
+      this.name = ''
+      this.surname = ''
     }
   }
 })
