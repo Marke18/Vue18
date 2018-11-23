@@ -31,7 +31,7 @@ Vue.component('person', {
 Vue.component('child-component', {
   props: ['firstname2', 'lastname2'],
   methods: {
-    updateFirstname: function () {
+    updateFirstname () {
       this.$emit('update:firstname2', 'luigi')
     }
   }
@@ -63,7 +63,7 @@ new Vue({
 Vue.component('incrementer', {
   template: '<button @click="increment">+</button>',
   methods: {
-    increment: function () {
+    increment () {
       EventBus.$emit('increment')
     }
   }
@@ -72,7 +72,7 @@ Vue.component('incrementer', {
 Vue.component('decrementer', {
   template: '<button @click="decrement">-</button>',
   methods: {
-    decrement: function () {
+    decrement () {
       EventBus.$emit('decrement')
     }
   }
@@ -100,12 +100,12 @@ var app1 = new Vue({
     groceryList: [
       { id: 0, text: 'Vegetables' },
       { id: 1, text: 'Cheese' },
-      { id: 2, text: 'meat' },
+      { id: 2, text: 'Meat' },
       { id: 3, text: 'Whatever else humans are supposed to eat' }
     ]
   },
   computed: {
-    messageR: function () {
+    messageR () {
       return this.message.split('').reverse().join('')
     }
   }
@@ -134,7 +134,7 @@ var app2 = new Vue({
     sauna: 'no'
   },
   methods: {
-    shuffle: function () {
+    shuffle () {
       this.people = this.people.sort(function () {
         return 0.5 - Math.random()
       })
@@ -164,29 +164,29 @@ var app3 = new Vue({
     counter: 0
   },
   watch: {
-    firstname: function (value) {
+    firstname (value) {
       this.button1Dis = value.length < 3
       this.button = 0
     },
-    lastname: function (value) {
+    lastname (value) {
       this.button2Dis = value.length < 3
       this.button = 0
     }
   },
   filters: {
-    uppercase: function (text) {
+    uppercase (text) {
       return text.toUpperCase()
     },
-    limit: function (text, length) {
+    limit (text, length) {
       return text.substring(0, length)
     }
   },
   computed: {
     fullname: {
-      get: function () {
+      get () {
         return this.firstname + ' ' + this.lastname
       },
-      set: function (value) {
+      set (value) {
         var parts = value.split(' ')
         this.firstname = parts[0]
         this.lastname = parts[1]
@@ -197,7 +197,7 @@ var app3 = new Vue({
     }
   },
   methods: {
-    addPerson: function () {
+    addPerson () {
       this.people.push({
         name: this.name,
         surname: this.surname
@@ -205,14 +205,14 @@ var app3 = new Vue({
       this.name = ''
       this.surname = ''
     },
-    increment: function () {
+    increment () {
       this.counter++
     },
-    decrement: function () {
+    decrement () {
       this.counter--
     }
   },
-  created: function () {
+  created () {
     EventBus.$on('increment', this.increment.bind(this))
     EventBus.$on('decrement', this.decrement.bind(this))
   }
@@ -221,12 +221,13 @@ var app3 = new Vue({
 var app4 = new Vue({
   el: '#app-4',
   data: {
+    xy: '45.64153 10.49866',
     coord: '45.64153 10.49866',
     message: 'Scegli il Messaggio'
   },
   computed: {
     coordinate: {
-      get: function () {
+      get () {
         var txt = ''
         var l1 = this.coord.length
         var l2 = this.message.length
@@ -239,7 +240,7 @@ var app4 = new Vue({
       }
     },
     messageL: {
-      get: function () {
+      get () {
         var txt = ''
         var l1 = this.coord.length
         var l2 = this.message.length
@@ -253,10 +254,11 @@ var app4 = new Vue({
     }
   },
   methods: {
-    converti: function () {
+    converti () {
       let chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 '
       let txt = this.messageL.split('')
       let coord = this.coord.split('')
+      // console.log(app4.coord_altro, 'pippo')
       for (let i = 0; i <= this.messageL.length; i++) {
         var id = setInterval(() => {
           if (txt[i] !== coord[i]) {
@@ -267,6 +269,9 @@ var app4 = new Vue({
           }
         }, 40)
       }
+    },
+    reset () {
+      this.coord = this.xy
     }
   }
 })
