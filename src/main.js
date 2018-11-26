@@ -145,8 +145,8 @@ var titolo = new Vue({
 var container = new Vue({
   el: 'container',
   data: {
-    stylesMargin: {
-      margin: '1vh'
+    margin: {
+      margin: '5vh'
     }
   }
 })
@@ -156,7 +156,7 @@ var app1 = new Vue({
 // window.test = app1; --> per visualizzare le modifiche in console
   el: ' #app-1',
   data: {
-    message: 'Cambia messaggio',
+    message: '',
     pal: 'Stringa palindroma',
     palN: 'Stringa non palindroma',
     myCustomStyles: {
@@ -167,7 +167,10 @@ var app1 = new Vue({
       { id: 1, text: 'Cheese' },
       { id: 2, text: 'Meat' },
       { id: 3, text: 'Whatever else humans are supposed to eat' }
-    ]
+    ],
+    style: {
+      marginBottom: '1vh'
+    }
   },
   computed: {
     messageR () {

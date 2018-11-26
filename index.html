@@ -35,14 +35,14 @@
     <h1 :style="StylesH1">Vue18</h1>
   </div>
 
-  <div class="container" :style="stylesMargin">
+  <div class="container" :style="margin">
 
     <div id="app-1" :style="myCustomStyles"> <!-- :style="[myCustomStyles, { width: '100px' }]" -->
       <div class="row" v-margin> <!-- v-margin="'2vh'" => per modifiche, modifica sia bottom che top -->
         <div class="col-lg-8">
           <!-- model: gestisce l'input -->
           <!-- v-on: si può sostituire con @ -->
-          <input v-model="message" style="margin-bottom:1vh;"></input>
+          <input v-model="message" :style="style" placeholder="Cambia messaggio"></input>
           <span> ==> {{messageR}}</span>
           <p v-if="message == messageR">{{pal}}</p>
           <p v-else>{{palN}}</p>
