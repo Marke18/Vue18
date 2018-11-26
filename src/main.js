@@ -24,7 +24,8 @@ var clickMixin = { // mixins serve per non riscrivere lo stesso codice piu' volt
 
 Vue.directive('margin', {
   inserted (el, binding) {
-    el.style.marginTop = binding.value || '2vh',
+    el.style.marginTop = binding.value || '2vh', // modificabile sull'html
+    // el.style.marginTop = '2vh', // non modificabile sull'html
     el.style.marginBottom = binding.value || '2vh'
   }
 })
