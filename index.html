@@ -100,8 +100,8 @@
           <button v-bind:disabled="button2Dis" v-on:click="button = 2"> <!-- v-bind:disabled=false -->
             3 Cognome
           </button><br>
-          <p v-if="button == 1">Prime 3 lettere del nome: {{firstname|uppercase|limit(3)}}</p>
-          <p v-if="button == 2">Prime 3 lettere del cognome: {{lastname|uppercase|limit(3)}}</p>
+          <p v-show="button == 1">Prime 3 lettere del nome: {{firstname|uppercase|limit(3)}}</p>
+          <p v-show="button == 2">Prime 3 lettere del cognome: {{lastname|uppercase|limit(3)}}</p>
         </div>
         <div class="col-lg-2 offset-lg">
           <input v-model="name" placeholder="name"><br/>
