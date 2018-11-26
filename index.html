@@ -11,14 +11,38 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-</head>
-<body>
+  <style>
+    .margin {
+      margin-top: 2vh;
+      margin-bottom: 2vh;
+    }
+  </style>
 
-  <div id="titolo">
-    <h1>Vue18</h1>
+  <script type="text/x-template" id="product-card-template">
+    <div class='product-card' style='border:1px solid #ddd; margin: 10px; padding: 10px;'>
+      <h4><slot name='title'></slot></h4>
+      <slot></slot>
+      <footer style='font-size: 10px'><slot name='footer'></slot></footer>
+    </div>
+  </script>
+
+  <template id="people-list">
+    <div>
+      <person v-for="person in people" :person="person"></person>
+    </div>
+  </template>
+  <template id="person">
+    <div><i>{{ person.name }}</i> <b>{{ person.surname }}</b></div>
+  </template>
+
+</head>
+<body :style="[margin, { margin: 0px }]">
+
+  <div id="titolo" :style="Styles">
+    <h1 :style="StylesH1">Vue18</h1>
   </div>
 
-  <div class="container">
+  <div class="container" :style="stylesMargin">
 
     <div id="app-1" :style="myCustomStyles"> <!-- :style="[myCustomStyles, { width: '100px' }]" -->
       <div class="row margin">
@@ -115,25 +139,38 @@
       <div class="row margin">
         <div class="col-lg">
           <input v-model.trim="message">
-          <span> ==> {{message}}</span>
+          <span> ==> {{ message }}</span>
           <button v-on:click="converti">Converti</button>
           <button v-on:click="reset">Reset</button>
-          <div id="cambiaMess">
-            <span>{{coordinate}}</span>
+          <div :style="cambiaMess">
+            <span>{{ coordinate }}</span>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
-
-  <template id="people-list">
-    <div>
-      <person v-for="person in people" :person="person"></person>
+    <div id="app-5">
+      <div class="row margin">
+        <div class="col-lg-5">
+          <product-card>
+            <span slot="title">Titolo del prodotto 1</span><br>
+            Io sono il prodotto 1 e costo <strong>{{ costo1 }}€</strong>
+            <div slot="footer">Garanzia 12 mesi</div>
+          </product-card>
+        </div>
+        <div class="col-lg-5 offset-lg-2">
+          <product-card>
+            <span slot="title">Titolo del prodotto 2</span><br>
+            Io sono il prodotto 2, sono <span class="offer">in offerta</span> e costo <strong>{{ costo2 }}€</strong>
+            <div slot="footer">Nessuna garanzia per i prodotti in offerta</div>
+          </product-card>
+        </div>
+        <div class="col-lg-4 offset-lg-4" :style="myCustomStyles">
+          <span>La somma del prezzo dei 2 prodotti è <strong>{{ somma }}€</strong></span>
+        </div>
+      </div>
     </div>
-  </template>
-  <template id="person">
-    <div><i>{{ person.name }}</i> <b>{{ person.surname }}</b></div>
-  </template>
+
+  </div>
 </body>
 </html>

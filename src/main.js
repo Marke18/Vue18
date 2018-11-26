@@ -1,9 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-//  il commento sotto disattiva il warning per la riga sottostante
-// eslint-disable-next-line
-import CSS from '../style.css'
 // import App from './App'
 // import router from './router'
 
@@ -85,10 +82,40 @@ Vue.component('groc', {
   props: ['grocery'],
   template: '<li>{{ grocery.text }}</li>'
 })
-// window.test = app1; --> per visualizzare le modifiche in console
+
+//  il commento sotto disattiva il warning per la riga sottostante
+// eslint-disable-next-line
+var titolo = new Vue({
+  el: '#titolo',
+  data: {
+    Styles: {
+      height: '7vh',
+      width: '100%',
+      marginBottom: '3vh',
+      backgroundColor: 'black',
+      color: 'white',
+      textAlign: 'center'
+    },
+    StylesH1: {
+      margin: '0',
+      padding: '1vh 0',
+      fontWeight: 'bold'
+    }
+  }
+})
+
+var container = new Vue({
+  el: 'container',
+  data: {
+    stylesMargin: {
+      margin: '1vh'
+    }
+  }
+})
 // var app1: va bene, ma non permette le verifiche su console
 // eslint-disable-next-line
 var app1 = new Vue({
+// window.test = app1; --> per visualizzare le modifiche in console
   el: ' #app-1',
   data: {
     message: 'Cambia messaggio',
@@ -223,7 +250,15 @@ var app4 = new Vue({
   data: {
     xy: '45.64153 10.49866',
     coord: '45.64153 10.49866',
-    message: 'Scegli il Messaggio'
+    message: 'Scegli il Messaggio',
+    cambiaMess: {
+      backgroundColor: 'black',
+      color: 'green',
+      fontSize: '30px',
+      padding: '3vh',
+      width: '100%',
+      margin: '0px'
+    }
   },
   computed: {
     coordinate: {
@@ -272,6 +307,24 @@ var app4 = new Vue({
     },
     reset () {
       this.coord = this.xy
+    }
+  }
+})
+// eslint-disable-next-line
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    costo1: 10,
+    costo2: 5,
+    myCustomStyles: {
+      marginTop: '30px'
+    }
+  },
+  computed: {
+    somma: {
+      get () {
+        return this.costo1 + this.costo2
+      }
     }
   }
 })
