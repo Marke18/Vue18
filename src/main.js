@@ -22,11 +22,30 @@ var clickMixin = { // mixins serve per non riscrivere lo stesso codice piu' volt
   }
 }
 
+Vue.directive('margin', {
+  inserted (el, binding) {
+    el.style.marginTop = binding.value || '2vh',
+    el.style.marginBottom = binding.value || '2vh'
+  }
+})
+
 Vue.component('custom-button', {
   mixins: [clickMixin],
   template: '<button @click="onClick">custom button</button>'
 })
-
+/*
+Altro metodo per i mixin, non abusare => peggioramento del codice
+Vue.mixin({
+  methods: {
+    onClick: function() {
+      alert('clicked');
+    }
+  }
+});
+Vue.component('custom-button', {
+  template: '<button @click="onClick">custom button</button>'
+});
+*/
 Vue.component('another-custom-button', {
   mixins: [clickMixin],
   template: '<button @click="onClick">another custom button</button>'
