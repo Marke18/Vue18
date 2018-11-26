@@ -14,6 +14,23 @@ new Vue({
   template: '<App/>'
 })
 */
+var clickMixin = { // mixins serve per non riscrivere lo stesso codice piu' volte
+  methods: {
+    onClick () {
+      alert('clicked')
+    }
+  }
+}
+
+Vue.component('custom-button', {
+  mixins: [clickMixin],
+  template: '<button @click="onClick">custom button</button>'
+})
+
+Vue.component('another-custom-button', {
+  mixins: [clickMixin],
+  template: '<button @click="onClick">another custom button</button>'
+})
 
 Vue.component('people-list', {
   template: '#people-list',
@@ -104,6 +121,7 @@ var titolo = new Vue({
   }
 })
 
+// eslint-disable-next-line
 var container = new Vue({
   el: 'container',
   data: {
