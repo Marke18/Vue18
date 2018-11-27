@@ -199,7 +199,8 @@ var app2 = new Vue({
     },
     mese: 'marzo',
     tv: 'si',
-    sauna: 'no'
+    sauna: 'no',
+    show: true
   },
   methods: {
     shuffle () {
@@ -357,6 +358,7 @@ var app5 = new Vue({
   data: {
     costo1: 10,
     costo2: 5,
+    show: true,
     myCustomStyles: {
       marginTop: '30px'
     }
